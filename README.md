@@ -11,15 +11,15 @@ New engineers and even experienced ones spend significant time searching across 
 - Ingests a GitHub repository's documentation, README, source code, and issue history
 - Chunks and embeds the content into a vector database
 - Retrieves the most relevant chunks for a user's question
-- Generates a grounded answer using Claude, with citations back to the source file
+- Generates a grounded answer using a local LLM, with citations back to the source file
 - Serves the assistant through a simple Streamlit chat interface
 
 ## Architecture
 
 1. **Ingestion** — Repository content (docs, code, issues) is collected and split into chunks.
-2. **Embedding & storage** — Chunks are embedded and stored in a vector database (Chroma/FAISS).
+2. **Embedding & storage** — Chunks are embedded and stored in a Chroma vector database.
 3. **Retrieval** — On each query, the top-k most relevant chunks are retrieved.
-4. **Generation** — Retrieved chunks are passed to Claude, which generates a cited answer.
+4. **Generation** — Retrieved chunks are passed to a local Llama 3.1 model (via Ollama), which generates a cited answer.
 5. **Interface** — A Streamlit UI lets a user ask questions and see answers with sources.
 
 ## Tech stack
